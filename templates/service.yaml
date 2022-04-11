@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "simple-ruby-chart.fullname" . }}
+  namespace: {{ include "simple-ruby-chart.fullname" . }}
+  labels:
+    {{- include "simple-ruby-chart.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    {{- include "simple-ruby-chart.selectorLabels" . | nindent 4 }}
