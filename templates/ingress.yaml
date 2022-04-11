@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: {{ include "simple-ruby-chart.fullname" . }}-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
   labels:
 {{ include "simple-ruby-chart.labels" . | indent 4 }}
   namespace: {{ .Values.namespace }}
